@@ -59,14 +59,22 @@ export async function prepareMonthPlan(monthId: string): Promise<ActionResult<Mo
 export async function saveMonthPlan(
   monthId: string,
   incomeCents: number,
+  savedCents: number,
   allocations: MonthAllocationInput[],
 ): Promise<ActionResult<MonthId>> {
-  return run(() => getServices().budgets.saveMonth(monthId, incomeCents, allocations));
+  return run(() => getServices().budgets.saveMonth(monthId, incomeCents, savedCents, allocations));
 }
 
 export async function saveMonthIncome(monthId: string, incomeCents: number): Promise<ActionResult<null>> {
   return run(async () => {
     await getServices().budgets.updateIncome(monthId, incomeCents);
+    return null;
+  });
+}
+
+export async function saveMonthSaved(monthId: string, savedCents: number): Promise<ActionResult<null>> {
+  return run(async () => {
+    await getServices().budgets.updateSaved(monthId, savedCents);
     return null;
   });
 }

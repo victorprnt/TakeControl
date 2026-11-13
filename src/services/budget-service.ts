@@ -106,11 +106,9 @@ export class BudgetService {
     const reserve = envelopes.find((envelope) => envelope.id === RESERVE_CATEGORY_ID);
     const bills = await this.bills.listForMonth(selected);
     const spendingEnvelopes = envelopes.filter((envelope) => envelope.id !== BILLS_CATEGORY_ID);
-    const envelopeBudgetCents = spendingEnvelopes.reduce((total, envelope) => total + envelope.allocatedCents, 0);
     const envelopeSpentCents = spendingEnvelopes.reduce((total, envelope) => total + envelope.spentCents, 0);
-    const billBudgetCents = bills.reduce((total, bill) => total + bill.amount, 0);
     const billSpentCents = bills.filter((bill) => bill.paid).reduce((total, bill) => total + bill.amount, 0);
-    const budgetCents = envelopeBudgetCents + billBudgetCents;
+    const budgetCents = budget.income + budget.saved;
     const overviewSpentCents = envelopeSpentCents + billSpentCents;
     const previousMonthId = getPreviousMonth(selected);
     const previousBudget = budgets.find((item) => item.month === previousMonthId);
@@ -138,7 +136,8 @@ export class BudgetService {
         budgetCents,
         spentCents: overviewSpentCents,
         balanceCents: budgetCents - overviewSpentCents,
-        savedCents: reserve?.availableCents ?? 0,
+        savedCents: budget.saved,
+        salaryCents: budget.income,
       },
       bills,
       distribution: this.distribution(budget.income, allocatedCents),
@@ -213,6 +212,7 @@ export class BudgetService {
         monthId,
         alreadySaved: true,
         incomeCents: existing.income,
+        savedCents: existing.saved,
         allocations: this.savedAllocations(categories, active, saved),
       };
     }
@@ -226,6 +226,7 @@ export class BudgetService {
       monthId,
       alreadySaved: false,
       incomeCents: previous?.income ?? 0,
+      savedCents: previous?.saved ?? 0,
       allocations: active.map((category) => {
         const carried = previousRows.find((allocation) => allocation.categoryId === category.id);
 
@@ -241,19 +242,25 @@ export class BudgetService {
     };
   }
 
-  async saveMonth(monthId: string, incomeCents: number, allocations: MonthAllocationInput[]): Promise<MonthId> {
+  async saveMonth(
+    monthId: string,
+    incomeCents: number,
+    savedCents: number,
+    allocations: MonthAllocationInput[],
+  ): Promise<MonthId> {
     if (!isMonthId(monthId)) {
       throw new DataAccessError("O mês precisa estar no formato AAAA-MM.", "invalid");
     }
 
-    const income = this.money(incomeCents, "A renda");
+    const income = this.money(incomeCents, "O salário");
+    const saved = this.money(savedCents, "O economizado");
     const lines = this.uniqueAllocations(allocations);
     await this.ensureCategories(lines.map((line) => line.categoryId));
 
     const existing = await this.monthlyBudgets.findByMonth(monthId);
     const budget = existing
-      ? await this.monthlyBudgets.update(existing.id, { income })
-      : await this.monthlyBudgets.create({ month: monthId, income });
+      ? await this.monthlyBudgets.update(existing.id, { income, saved })
+      : await this.monthlyBudgets.create({ month: monthId, income, saved });
 
     await this.syncAllocations(budget.id, lines);
     return monthId;
@@ -290,7 +297,21 @@ export class BudgetService {
       throw new DataAccessError("Esse mês não tem orçamento.", "not_found");
     }
 
-    await this.monthlyBudgets.update(budget.id, { income: this.money(incomeCents, "A renda") });
+    await this.monthlyBudgets.update(budget.id, { income: this.money(incomeCents, "O salário") });
+  }
+
+  async updateSaved(monthId: string, savedCents: number): Promise<void> {
+    if (!isMonthId(monthId)) {
+      throw new DataAccessError("O mês precisa estar no formato AAAA-MM.", "invalid");
+    }
+
+    const budget = await this.monthlyBudgets.findByMonth(monthId);
+
+    if (!budget) {
+      throw new DataAccessError("Esse mês não tem orçamento.", "not_found");
+    }
+
+    await this.monthlyBudgets.update(budget.id, { saved: this.money(savedCents, "O economizado") });
   }
 
   async updateAllocation(monthId: string, categoryId: string, allocatedCents: number): Promise<void> {

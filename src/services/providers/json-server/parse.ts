@@ -62,6 +62,7 @@ export function parseMonthlyBudget(value: unknown): MonthlyBudget {
     id: readString(record.id, "id"),
     month,
     income: readCents(record.income, "income"),
+    saved: record.saved === undefined ? 0 : readCents(record.saved, "saved"),
     createdAt: readTimestamp(record.createdAt, "createdAt"),
     updatedAt: readTimestamp(record.updatedAt, "updatedAt"),
   };

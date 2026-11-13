@@ -11,7 +11,7 @@ import { SummaryCard } from "@/components/shared/summary-card";
 import { surfaceClassName } from "@/components/shared/surface";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, getNextMonth } from "@/lib/formatters";
-import { applyReceivedIncome, saveCategoryAllocation, saveMonthIncome } from "@/services/finance-actions";
+import { applyReceivedIncome, saveCategoryAllocation, saveMonthIncome, saveMonthSaved } from "@/services/finance-actions";
 import { cn } from "@/lib/utils";
 
 export function BudgetsView() {
@@ -44,13 +44,18 @@ export function BudgetsView() {
       {saveError ? <p className="text-sm text-danger-ink">{saveError}</p> : null}
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <SummaryCard
-          label="Renda planejada"
+          label="Salário"
           valueCents={distribution.incomeCents}
           hint={
             snapshot.receivedIncomeCents === distribution.incomeCents
               ? "Igual à renda recebida"
               : `Recebida ${formatCurrency(snapshot.receivedIncomeCents)}`
           }
+        />
+        <SummaryCard
+          label="Orçamento"
+          valueCents={snapshot.overview.budgetCents}
+          hint="Salário mais o economizado"
         />
         <SummaryCard label="Total distribuído" valueCents={distribution.allocatedCents} hint="Soma dos envelopes" />
         <SummaryCard
@@ -103,21 +108,38 @@ export function BudgetsView() {
             Substituir a planejada pela recebida
           </Button>
         )}
-        <MoneyField
-          key={`${snapshot.monthId}-income-${distribution.incomeCents}`}
-          label="Renda planejada"
-          cents={distribution.incomeCents}
-          saveLabel="Salvar renda"
-          onSave={async (cents) => {
-            const result = await saveMonthIncome(snapshot.monthId, cents);
-            if (!result.ok) {
-              return result.message;
-            }
-            setSaveError("");
-            retry();
-            return null;
-          }}
-        />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <MoneyField
+            key={`${snapshot.monthId}-income-${distribution.incomeCents}`}
+            label="Salário"
+            cents={distribution.incomeCents}
+            saveLabel="Salvar salário"
+            onSave={async (cents) => {
+              const result = await saveMonthIncome(snapshot.monthId, cents);
+              if (!result.ok) {
+                return result.message;
+              }
+              setSaveError("");
+              retry();
+              return null;
+            }}
+          />
+          <MoneyField
+            key={`${snapshot.monthId}-saved-${snapshot.overview.savedCents}`}
+            label="Economizado"
+            cents={snapshot.overview.savedCents}
+            saveLabel="Salvar economizado"
+            onSave={async (cents) => {
+              const result = await saveMonthSaved(snapshot.monthId, cents);
+              if (!result.ok) {
+                return result.message;
+              }
+              setSaveError("");
+              retry();
+              return null;
+            }}
+          />
+        </div>
       </section>
       <div className="flex justify-stretch sm:justify-end">
         <Button type="button" className="h-11 w-full rounded-full px-4 sm:w-auto" onClick={() => setCreating(true)}>

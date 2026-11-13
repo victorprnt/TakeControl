@@ -4,6 +4,7 @@ import type { MonthId } from "@/types/month";
 export type NewMonthlyBudget = {
   month: MonthId;
   income: MonthlyBudget["income"];
+  saved: MonthlyBudget["saved"];
 };
 
 export interface MonthlyBudgetRepository {

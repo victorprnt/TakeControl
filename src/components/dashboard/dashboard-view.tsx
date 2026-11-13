@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { PiggyBank, Receipt, WalletCards, type LucideIcon } from "lucide-react";
 
 import { BillCard } from "@/components/dashboard/bill-card";
@@ -8,7 +9,8 @@ import { EnvelopeCard } from "@/components/dashboard/envelope-card";
 import { useFinance, useFinanceSnapshot } from "@/components/layout/finance-provider";
 import { surfaceClassName } from "@/components/shared/surface";
 import { BILLS_CATEGORY_ID } from "@/constants/finance";
-import { formatCurrency } from "@/lib/formatters";
+import { formatCurrency, formatCurrencyInput, parseCurrencyToCents } from "@/lib/formatters";
+import { saveMonthIncome, saveMonthSaved } from "@/services/finance-actions";
 import { cn } from "@/lib/utils";
 import type { Cents } from "@/types/money";
 
@@ -34,6 +36,34 @@ export function DashboardView() {
                 {formatCurrency(overview.balanceCents)}
               </p>
               <p className="mt-3 text-sm text-white/60">Orçamento menos o gasto</p>
+              <div className="mt-5 grid grid-cols-2 gap-3 sm:max-w-md">
+                <MonthAmountField
+                  key={`${snapshot.monthId}-salary-${overview.salaryCents}`}
+                  label="Salário"
+                  cents={overview.salaryCents}
+                  onSave={async (cents) => {
+                    const result = await saveMonthIncome(snapshot.monthId, cents);
+                    if (!result.ok) {
+                      return result.message;
+                    }
+                    retry();
+                    return null;
+                  }}
+                />
+                <MonthAmountField
+                  key={`${snapshot.monthId}-saved-${overview.savedCents}`}
+                  label="Economizado"
+                  cents={overview.savedCents}
+                  onSave={async (cents) => {
+                    const result = await saveMonthSaved(snapshot.monthId, cents);
+                    if (!result.ok) {
+                      return result.message;
+                    }
+                    retry();
+                    return null;
+                  }}
+                />
+              </div>
             </div>
             <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:min-w-[22rem]">
               <Orb
@@ -88,6 +118,64 @@ export function DashboardView() {
         )}
       </section>
     </div>
+  );
+}
+
+function MonthAmountField({
+  label,
+  cents,
+  onSave,
+}: {
+  label: string;
+  cents: Cents;
+  onSave: (cents: Cents) => Promise<string | null>;
+}) {
+  const [value, setValue] = useState(() => formatCurrencyInput(cents));
+  const [error, setError] = useState("");
+  const [pending, setPending] = useState(false);
+
+  async function save(raw: string) {
+    const parsed = parseCurrencyToCents(raw);
+
+    if (parsed === null) {
+      setError("Use um valor como 5.455,00.");
+      return;
+    }
+
+    setValue(formatCurrencyInput(parsed));
+
+    if (parsed === cents) {
+      setError("");
+      return;
+    }
+
+    setPending(true);
+    const message = await onSave(parsed);
+    setPending(false);
+    setError(message ?? "");
+  }
+
+  return (
+    <label className="grid gap-1.5 text-sm font-medium text-white/70">
+      {label}
+      <input
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+        onBlur={(event) => void save(event.currentTarget.value)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            void save(event.currentTarget.value);
+          }
+        }}
+        inputMode="decimal"
+        autoComplete="off"
+        aria-label={label}
+        disabled={pending}
+        className="h-11 w-full rounded-full border-0 bg-white/10 px-4 text-base font-medium text-white tabular-nums outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+      />
+      <span className="min-h-5 text-xs text-danger-ink">{error}</span>
+    </label>
   );
 }
 

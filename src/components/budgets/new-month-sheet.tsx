@@ -27,6 +27,7 @@ export function NewMonthSheet({ initialMonth, onOpenChange, onSaved }: NewMonthS
   const [monthId, setMonthId] = useState(initialMonth);
   const [plan, setPlan] = useState<MonthPlan | null>(null);
   const [income, setIncome] = useState("");
+  const [saved, setSaved] = useState("");
   const [amounts, setAmounts] = useState<Record<string, string>>({});
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
@@ -46,6 +47,7 @@ export function NewMonthSheet({ initialMonth, onOpenChange, onSaved }: NewMonthS
 
       setPlan(result.data);
       setIncome(formatCurrencyInput(result.data.incomeCents));
+      setSaved(formatCurrencyInput(result.data.savedCents));
       setAmounts(
         Object.fromEntries(
           result.data.allocations.map((allocation) => [
@@ -68,9 +70,15 @@ export function NewMonthSheet({ initialMonth, onOpenChange, onSaved }: NewMonthS
     }
 
     const incomeCents = parseCurrencyToCents(income);
+    const savedCents = parseCurrencyToCents(saved);
 
     if (incomeCents === null) {
-      setError("A renda precisa ser um valor como 5.455,00.");
+      setError("O salário precisa ser um valor como 5.455,00.");
+      return;
+    }
+
+    if (savedCents === null) {
+      setError("O economizado precisa ser um valor como 600,00.");
       return;
     }
 
@@ -88,7 +96,7 @@ export function NewMonthSheet({ initialMonth, onOpenChange, onSaved }: NewMonthS
     }
 
     setPending(true);
-    const result = await saveMonthPlan(plan.monthId, incomeCents, allocations);
+    const result = await saveMonthPlan(plan.monthId, incomeCents, savedCents, allocations);
     setPending(false);
 
     if (!result.ok) {
@@ -128,10 +136,20 @@ export function NewMonthSheet({ initialMonth, onOpenChange, onSaved }: NewMonthS
             />
           </label>
           <label className="grid gap-1.5 text-sm font-medium text-foreground">
-            Renda
+            Salário
             <input
               value={income}
               onChange={(event) => setIncome(event.target.value)}
+              inputMode="decimal"
+              autoComplete="off"
+              className={fieldClassName}
+            />
+          </label>
+          <label className="grid gap-1.5 text-sm font-medium text-foreground">
+            Economizado
+            <input
+              value={saved}
+              onChange={(event) => setSaved(event.target.value)}
               inputMode="decimal"
               autoComplete="off"
               className={fieldClassName}

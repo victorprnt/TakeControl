@@ -17,6 +17,7 @@ export type MonthPlan = {
   monthId: MonthId;
   alreadySaved: boolean;
   incomeCents: Cents;
+  savedCents: Cents;
   allocations: MonthAllocationDraft[];
 };
 

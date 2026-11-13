@@ -76,12 +76,13 @@ export type FinanceSummary = {
   reservedCents: Cents;
 };
 
-/** Dashboard totals. Bills replace the lumped household envelope. */
+/** Dashboard totals. The budget is the salary plus the amount saved by hand. */
 export type MonthOverview = {
   budgetCents: Cents;
   spentCents: Cents;
   balanceCents: Cents;
   savedCents: Cents;
+  salaryCents: Cents;
 };
 
 /** How the month's income was split across envelopes. */
