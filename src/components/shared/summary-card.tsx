@@ -11,6 +11,7 @@ type SummaryCardProps = {
   hint?: string;
   icon?: LucideIcon;
   emphasis?: "default" | "gradient";
+  size?: "default" | "compact";
   className?: string;
 };
 
@@ -20,6 +21,7 @@ export function SummaryCard({
   hint,
   icon: Icon,
   emphasis = "default",
+  size = "default",
   className,
 }: SummaryCardProps) {
   return (
@@ -40,7 +42,12 @@ export function SummaryCard({
           </span>
         ) : null}
       </div>
-      <p className="truncate text-2xl font-semibold tracking-tight text-foreground tabular-nums sm:text-3xl">
+      <p
+        className={cn(
+          "truncate font-semibold tracking-tight text-foreground tabular-nums",
+          size === "compact" ? "text-lg sm:text-2xl" : "text-2xl sm:text-3xl",
+        )}
+      >
         {formatCurrency(valueCents)}
       </p>
       {hint ? <p className="text-xs leading-5 text-muted-foreground">{hint}</p> : null}

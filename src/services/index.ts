@@ -17,7 +17,11 @@ export type Services = {
 export function createServices(repositories: Repositories = createRepositories()): Services {
   const categories = new CategoryService(repositories.categories);
   const transactions = new TransactionService(repositories.transactions, repositories.categories);
-  const recurring = new RecurringExpenseService(repositories.recurringExpenses, repositories.categories);
+  const recurring = new RecurringExpenseService(
+    repositories.recurringExpenses,
+    repositories.categories,
+    transactions,
+  );
 
   return {
     categories,

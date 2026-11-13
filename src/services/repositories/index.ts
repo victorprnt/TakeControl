@@ -19,5 +19,9 @@ export interface Repositories {
 export type { CategoryRepository, NewCategory } from "@/services/repositories/category-repository";
 export type { CategoryBudgetRepository, NewCategoryBudget } from "@/services/repositories/category-budget-repository";
 export type { MonthlyBudgetRepository, NewMonthlyBudget } from "@/services/repositories/monthly-budget-repository";
-export type { RecurringExpenseRepository, NewRecurringExpense } from "@/services/repositories/recurring-expense-repository";
-export type { NewTransaction, TransactionRepository } from "@/services/repositories/transaction-repository";
+export type {
+  NewRecurringExpense,
+  RecurringExpensePatch,
+  RecurringExpenseRepository,
+} from "@/services/repositories/recurring-expense-repository";
+export type { NewTransaction, TransactionPatch, TransactionRepository } from "@/services/repositories/transaction-repository";

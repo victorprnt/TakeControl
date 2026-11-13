@@ -6,8 +6,8 @@ import type { Repositories } from "@/services/repositories";
 import type { NewCategory } from "@/services/repositories/category-repository";
 import type { NewCategoryBudget } from "@/services/repositories/category-budget-repository";
 import type { NewMonthlyBudget } from "@/services/repositories/monthly-budget-repository";
-import type { NewRecurringExpense } from "@/services/repositories/recurring-expense-repository";
-import type { NewTransaction } from "@/services/repositories/transaction-repository";
+import type { NewRecurringExpense, RecurringExpensePatch } from "@/services/repositories/recurring-expense-repository";
+import type { NewTransaction, TransactionPatch } from "@/services/repositories/transaction-repository";
 import { JsonServerClient } from "@/services/providers/json-server/client";
 import {
   parseCategories,
@@ -30,6 +30,15 @@ function stamp<T extends object>(input: T): T & { id: string; createdAt: string;
     ...input,
     createdAt: now,
     updatedAt: now,
+  };
+}
+
+/** JSON Server crashes on delete when a foreign key such as categoryId is null. */
+function withoutNullCategory<T extends { categoryId?: string | null; notes?: string | null }>(record: T) {
+  return {
+    ...record,
+    categoryId: record.categoryId || undefined,
+    notes: record.notes || undefined,
   };
 }
 
@@ -133,16 +142,33 @@ export function createJsonServerRepositories(client: JsonServerClient): Reposito
         return client.getOrNull(`/transactions/${encodeURIComponent(id)}`, parseTransaction);
       },
       create(input: NewTransaction) {
-        return client.post("/transactions", stamp(input), parseTransaction);
+        return client.post("/transactions", withoutNullCategory(stamp(input)), parseTransaction);
       },
-      async update(id, input: Partial<NewTransaction>) {
+      async update(id, input: TransactionPatch) {
         const current = await client.getOrNull(`/transactions/${encodeURIComponent(id)}`, parseTransaction);
 
         if (!current) {
           throw new DataAccessError("Registro não encontrado.", "not_found", 404);
         }
 
-        return client.patch(`/transactions/${encodeURIComponent(id)}`, withUpdate(input), parseTransaction);
+        const next = withoutNullCategory({
+          ...current,
+          ...input,
+          id: current.id,
+          createdAt: current.createdAt,
+          updatedAt: new Date().toISOString(),
+        });
+
+        return client.put(`/transactions/${encodeURIComponent(id)}`, next, parseTransaction);
+      },
+      async delete(id) {
+        const current = await client.getOrNull(`/transactions/${encodeURIComponent(id)}`, parseTransaction);
+
+        if (!current) {
+          throw new DataAccessError("Registro não encontrado.", "not_found", 404);
+        }
+
+        await client.delete(`/transactions/${encodeURIComponent(id)}`);
       },
     },
     recurringExpenses: {
@@ -155,7 +181,7 @@ export function createJsonServerRepositories(client: JsonServerClient): Reposito
       create(input: NewRecurringExpense) {
         return client.post("/recurringExpenses", stamp(input), parseRecurringExpense);
       },
-      async update(id, input: Partial<NewRecurringExpense>) {
+      async update(id, input: RecurringExpensePatch) {
         const current = await client.getOrNull(
           `/recurringExpenses/${encodeURIComponent(id)}`,
           parseRecurringExpense,

@@ -50,7 +50,7 @@ export const mainNavigation: NavItem[] = [
     href: "/recurring",
     label: "Recorrências",
     shortLabel: "Recorrências",
-    description: "Acompanhe contas e gastos que se repetem.",
+    description: "Regras que geram os lançamentos de cada período.",
     icon: Repeat,
   },
   {

@@ -87,18 +87,37 @@ export function parseCategoryBudgets(value: unknown): CategoryBudget[] {
   return parseList(value, parseCategoryBudget);
 }
 
+function readOptionalId(value: unknown, field: string): string | undefined {
+  if (value === undefined || value === null || value === "") {
+    return undefined;
+  }
+
+  return readString(value, field);
+}
+
 export function parseTransaction(value: unknown): Transaction {
   const record = readRecord(value);
   const notes = readOptionalString(record.notes, "notes");
+  const recurringExpenseId = readOptionalId(record.recurringExpenseId, "recurringExpenseId");
+  const occurrenceDate =
+    record.occurrenceDate === undefined || record.occurrenceDate === null || record.occurrenceDate === ""
+      ? undefined
+      : readDateOnly(record.occurrenceDate, "occurrenceDate");
+
+  if (Boolean(recurringExpenseId) !== Boolean(occurrenceDate)) {
+    throw new Error("Invalid occurrence link.");
+  }
 
   return {
     id: readString(record.id, "id"),
     description: readString(record.description, "description"),
     amount: readCents(record.amount, "amount", 1),
     type: readEnum(record.type, "type", transactionTypes),
-    categoryId: readNullableId(record.categoryId, "categoryId"),
+    categoryId:
+      record.categoryId === undefined ? null : readNullableId(record.categoryId, "categoryId"),
     date: readDateOnly(record.date, "date"),
     ...(notes ? { notes } : {}),
+    ...(recurringExpenseId && occurrenceDate ? { recurringExpenseId, occurrenceDate } : {}),
     createdAt: readTimestamp(record.createdAt, "createdAt"),
     updatedAt: readTimestamp(record.updatedAt, "updatedAt"),
   };

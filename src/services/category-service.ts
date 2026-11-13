@@ -1,5 +1,6 @@
 import "server-only";
 
+import { categoryIconNames, type CategoryIconName } from "@/constants/category-icons";
 import { isHexColor } from "@/lib/validations/records";
 import { DataAccessError } from "@/services/errors";
 import type { CategoryRepository, NewCategory } from "@/services/repositories/category-repository";
@@ -41,11 +42,11 @@ export class CategoryService {
   }
 
   private parse(input: NewCategory): NewCategory {
-    const description = this.optionalText(input.description, "A descrição da categoria");
+    const description = this.optionalText(input.description);
 
     return {
       name: this.requiredText(input.name, "O nome da categoria"),
-      icon: this.requiredText(input.icon, "O ícone da categoria"),
+      icon: this.icon(input.icon),
       color: this.color(input.color),
       ...(description ? { description } : {}),
       defaultBudget: this.budget(input.defaultBudget),
@@ -61,7 +62,7 @@ export class CategoryService {
     }
 
     if (input.icon !== undefined) {
-      next.icon = this.requiredText(input.icon, "O ícone da categoria");
+      next.icon = this.icon(input.icon);
     }
 
     if (input.color !== undefined) {
@@ -69,10 +70,7 @@ export class CategoryService {
     }
 
     if (input.description !== undefined) {
-      const description = this.optionalText(input.description, "A descrição da categoria");
-      if (description) {
-        next.description = description;
-      }
+      next.description = input.description.trim();
     }
 
     if (input.defaultBudget !== undefined) {
@@ -96,18 +94,19 @@ export class CategoryService {
     return trimmed;
   }
 
-  private optionalText(value: string | undefined, label: string): string | undefined {
-    if (value === undefined) {
-      return undefined;
-    }
+  private optionalText(value: string | undefined): string | undefined {
+    const trimmed = value?.trim();
+    return trimmed ? trimmed : undefined;
+  }
 
+  private icon(value: string): CategoryIconName {
     const trimmed = value.trim();
 
-    if (!trimmed) {
-      throw new DataAccessError(`${label} não pode ficar vazia.`, "invalid");
+    if (!categoryIconNames.includes(trimmed as CategoryIconName)) {
+      throw new DataAccessError("Escolha um ícone da lista.", "invalid");
     }
 
-    return trimmed;
+    return trimmed as CategoryIconName;
   }
 
   private color(value: string): string {

@@ -312,7 +312,6 @@
       "description": "Salário",
       "amount": 545500,
       "type": "income",
-      "categoryId": null,
       "date": "2026-09-05",
       "createdAt": "2026-01-01T15:00:00.000Z",
       "updatedAt": "2026-01-01T15:00:00.000Z"
@@ -523,7 +522,6 @@
       "description": "Salário",
       "amount": 545500,
       "type": "income",
-      "categoryId": null,
       "date": "2026-10-05",
       "createdAt": "2026-01-01T15:00:00.000Z",
       "updatedAt": "2026-01-01T15:00:00.000Z"
@@ -783,7 +781,6 @@
       "description": "Salário",
       "amount": 545500,
       "type": "income",
-      "categoryId": null,
       "date": "2026-11-05",
       "createdAt": "2026-01-01T15:00:00.000Z",
       "updatedAt": "2026-01-01T15:00:00.000Z"

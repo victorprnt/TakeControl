@@ -6,6 +6,7 @@ import { Moon } from "lucide-react";
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { surfaceClassName } from "@/components/shared/surface";
 import { Button } from "@/components/ui/button";
+import { budgetThresholds } from "@/constants/budget-thresholds";
 import { cn } from "@/lib/utils";
 
 export function SettingsView() {
@@ -30,6 +31,32 @@ export function SettingsView() {
         <p className="mt-3 text-sm leading-6 text-muted-foreground">
           O tema claro está ativo. O modo escuro já possui tokens e será alternável depois.
         </p>
+      </section>
+      <section className={cn(surfaceClassName, "p-5 lg:col-span-2")}>
+        <h2 className="text-sm font-semibold text-foreground">Limites dos envelopes</h2>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
+          O painel usa estas faixas para marcar cada categoria. O ajuste fica neste ponto único da configuração.
+        </p>
+        <dl className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div className="rounded-2xl bg-primary/15 px-4 py-3">
+            <dt className="text-xs text-muted-foreground">Dentro do orçamento</dt>
+            <dd className="mt-1 text-sm font-semibold text-foreground">
+              Abaixo de {budgetThresholds.attentionFromPercent}%
+            </dd>
+          </div>
+          <div className="rounded-2xl bg-warning/40 px-4 py-3">
+            <dt className="text-xs text-muted-foreground">Atenção</dt>
+            <dd className="mt-1 text-sm font-semibold text-foreground">
+              {budgetThresholds.attentionFromPercent}% a {budgetThresholds.criticalAbovePercent}%
+            </dd>
+          </div>
+          <div className="rounded-2xl bg-destructive/15 px-4 py-3">
+            <dt className="text-xs text-muted-foreground">Crítico</dt>
+            <dd className="mt-1 text-sm font-semibold text-foreground">
+              Acima de {budgetThresholds.criticalAbovePercent}%
+            </dd>
+          </div>
+        </dl>
       </section>
       <section className={cn(surfaceClassName, "p-5 lg:col-span-2")}>
         <h2 className="text-sm font-semibold text-foreground">Sessão</h2>

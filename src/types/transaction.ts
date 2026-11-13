@@ -12,6 +12,10 @@ export type Transaction = {
   /** Calendar date, YYYY-MM-DD, in America/Fortaleza. */
   date: string;
   notes?: string;
+  /** Set when this row was generated from a recurring rule. */
+  recurringExpenseId?: string;
+  /** Scheduled date of that occurrence. Stays put if the user edits the transaction date. */
+  occurrenceDate?: string;
   createdAt: string;
   updatedAt: string;
 };

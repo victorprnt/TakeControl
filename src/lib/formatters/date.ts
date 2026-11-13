@@ -108,3 +108,44 @@ export function getPreviousMonth(monthId: MonthId = getCurrentMonth()): MonthId 
 
   return `${year}-${String(month - 1).padStart(2, "0")}`;
 }
+
+/** Inclusive YYYY-MM-DD bounds of a calendar month. */
+export function monthDateRange(monthId: MonthId): { start: string; end: string } {
+  const { year, month } = parseMonthId(monthId);
+  const last = new Date(Date.UTC(year, month, 0)).getUTCDate();
+
+  return {
+    start: `${monthId}-01`,
+    end: `${monthId}-${String(last).padStart(2, "0")}`,
+  };
+}
+
+/** Calendar date in America/Fortaleza, YYYY-MM-DD. */
+export function toDateOnly(date: Date = new Date()): string {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: APP_TIMEZONE,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const year = parts.find((part) => part.type === "year")?.value;
+  const month = parts.find((part) => part.type === "month")?.value;
+  const day = parts.find((part) => part.type === "day")?.value;
+
+  if (!year || !month || !day) {
+    throw new Error("Unable to format the calendar date.");
+  }
+
+  return `${year}-${month}-${day}`;
+}
+
+/** Next calendar month. */
+export function getNextMonth(monthId: MonthId): MonthId {
+  const { year, month } = parseMonthId(monthId);
+
+  if (month === 12) {
+    return `${year + 1}-01`;
+  }
+
+  return `${year}-${String(month + 1).padStart(2, "0")}`;
+}

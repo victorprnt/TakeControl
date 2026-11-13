@@ -34,6 +34,35 @@ export class JsonServerClient {
     return this.request(path, { method: "PATCH", body: JSON.stringify(body) }, parse);
   }
 
+  put<T>(path: string, body: unknown, parse: (value: unknown) => T): Promise<T> {
+    return this.request(path, { method: "PUT", body: JSON.stringify(body) }, parse);
+  }
+
+  async delete(path: string): Promise<void> {
+    const url = new URL(path, `${this.baseUrl}/`);
+    let response: Response;
+
+    try {
+      response = await fetch(url, {
+        method: "DELETE",
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+    } catch (error) {
+      console.error("JSON Server is unreachable", url.pathname, error);
+      throw new DataAccessError("Não foi possível falar com o servidor de dados.", "unavailable");
+    }
+
+    if (response.status === 404) {
+      throw new DataAccessError("Registro não encontrado.", "not_found", 404);
+    }
+
+    if (!response.ok) {
+      console.error("JSON Server responded with an error", response.status, url.pathname);
+      throw new DataAccessError("O servidor de dados respondeu com um erro.", "http", response.status);
+    }
+  }
+
   private async request<T>(path: string, init: RequestInit, parse: (value: unknown) => T): Promise<T> {
     const url = new URL(path, `${this.baseUrl}/`);
     let response: Response;
