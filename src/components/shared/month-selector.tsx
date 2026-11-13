@@ -13,7 +13,7 @@ export function MonthSelector() {
   const busy = status === "loading";
 
   return (
-    <div className="flex h-11 items-center rounded-full bg-card px-1 shadow-[0_10px_24px_-20px_rgba(37,55,70,0.6)]">
+    <div className="flex h-12 items-center rounded-2xl bg-white/10 px-1 ring-1 ring-white/15">
       <button
         type="button"
         className="inline-flex size-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-muted disabled:opacity-40"

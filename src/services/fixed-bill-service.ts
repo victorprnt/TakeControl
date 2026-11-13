@@ -22,6 +22,7 @@ export class FixedBillService {
 
   /**
    * Bills for the month. A month without rows copies the previous amounts, unpaid.
+   * A month the user emptied stays empty, including the following month.
    * The first month falls back to the household list.
    */
   async listForMonth(monthId: string): Promise<FixedBill[]> {
@@ -30,17 +31,27 @@ export class FixedBillService {
     }
 
     const all = await this.bills.list();
+    const cleared = new Set(await this.bills.listClearedMonths());
     const current = all.filter((bill) => bill.month === monthId).sort(byOrder);
 
     if (current.length > 0) {
       return current;
     }
 
-    const sourceMonth = all
-      .map((bill) => bill.month)
+    if (cleared.has(monthId)) {
+      return [];
+    }
+
+    const sourceMonth = [...new Set([...all.map((bill) => bill.month), ...cleared])]
       .filter((month) => month < monthId)
       .sort()
       .at(-1);
+
+    if (sourceMonth && cleared.has(sourceMonth) && !all.some((bill) => bill.month === sourceMonth)) {
+      await this.bills.markMonthCleared(monthId);
+      return [];
+    }
+
     const templates = sourceMonth ? all.filter((bill) => bill.month === sourceMonth) : householdBills;
 
     const created = await Promise.all(
@@ -57,6 +68,57 @@ export class FixedBillService {
     );
 
     return created.sort(byOrder);
+  }
+
+  async add(monthId: string, input: { name: string; amount: number }): Promise<FixedBill> {
+    const name = input.name.trim().replace(/\s+/g, " ");
+
+    if (!name) {
+      throw new DataAccessError("Informe o nome da conta.", "invalid");
+    }
+
+    if (name.length > 40) {
+      throw new DataAccessError("O nome da conta precisa ter até 40 caracteres.", "invalid");
+    }
+
+    if (!Number.isInteger(input.amount) || input.amount < 0) {
+      throw new DataAccessError("O valor da conta não pode ser negativo.", "invalid");
+    }
+
+    const current = await this.listForMonth(monthId);
+    const duplicate = current.some((bill) => bill.name.localeCompare(name, "pt-BR", { sensitivity: "base" }) === 0);
+
+    if (duplicate) {
+      throw new DataAccessError("Já existe uma conta com esse nome neste mês.", "conflict");
+    }
+
+    const sortOrder = current.reduce((highest, bill) => Math.max(highest, bill.sortOrder), -1) + 1;
+
+    return this.bills.create({
+      name,
+      icon: "wallet",
+      amount: input.amount,
+      paid: false,
+      month: monthId,
+      sortOrder,
+    });
+  }
+
+  async remove(id: string): Promise<void> {
+    const all = await this.bills.list();
+    const current = all.find((bill) => bill.id === id);
+
+    if (!current) {
+      throw new DataAccessError("Registro não encontrado.", "not_found", 404);
+    }
+
+    await this.bills.delete(id);
+
+    const remaining = all.some((bill) => bill.month === current.month && bill.id !== id);
+
+    if (!remaining) {
+      await this.bills.markMonthCleared(current.month);
+    }
   }
 
   async update(id: string, input: FixedBillPatch): Promise<FixedBill> {

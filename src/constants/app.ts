@@ -1,6 +1,8 @@
-export const APP_NAME = "STREAM";
+export const APP_NAME = "Take Control";
 
-export const APP_DESCRIPTION = "Controle financeiro pessoal por envelopes.";
+export const APP_TAGLINE = "Retome o controle das finanças";
+
+export const APP_DESCRIPTION = "Tome o controle das suas finanças, envelope por envelope.";
 
 export const APP_LOCALE = "pt-BR";
 

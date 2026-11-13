@@ -17,6 +17,8 @@ import {
   parseCategoryBudgets,
   parseMonthlyBudget,
   parseMonthlyBudgets,
+  parseBillMonth,
+  parseBillMonths,
   parseFixedBill,
   parseFixedBills,
   parseRecurringExpense,
@@ -212,6 +214,28 @@ export function createJsonServerRepositories(client: JsonServerClient): Reposito
         }
 
         return client.patch(`/fixedBills/${encodeURIComponent(id)}`, withUpdate(input), parseFixedBill);
+      },
+      async delete(id) {
+        const current = await client.getOrNull(`/fixedBills/${encodeURIComponent(id)}`, parseFixedBill);
+
+        if (!current) {
+          throw new DataAccessError("Registro não encontrado.", "not_found", 404);
+        }
+
+        await client.delete(`/fixedBills/${encodeURIComponent(id)}`);
+      },
+      async listClearedMonths() {
+        const months = await client.get("/billMonths", parseBillMonths);
+        return months.map((month) => month.month);
+      },
+      async markMonthCleared(month) {
+        const months = await client.get(`/billMonths?month=${encodeURIComponent(month)}`, parseBillMonths);
+
+        if (months.some((item) => item.month === month)) {
+          return;
+        }
+
+        await client.post("/billMonths", stamp({ month }), parseBillMonth);
       },
     },
   };

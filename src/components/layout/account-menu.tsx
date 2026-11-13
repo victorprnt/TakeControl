@@ -24,7 +24,7 @@ export function AccountMenu() {
     <Sheet open={open} onOpenChange={setOpen}>
       <button
         type="button"
-        className="inline-flex h-11 items-center gap-2 rounded-full bg-card pr-3 pl-1 shadow-[0_10px_24px_-20px_rgba(37,55,70,0.6)]"
+        className="inline-flex h-11 items-center gap-2 rounded-full bg-white/10 pr-3 pl-1 ring-1 ring-white/15"
         aria-label="Abrir identificação da conta"
         onClick={() => setOpen(true)}
       >

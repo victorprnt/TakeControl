@@ -18,7 +18,7 @@ export function ProgressBar({ value, tone = "safe", label }: ProgressBarProps) {
 
   return (
     <div
-      className="h-2 overflow-hidden rounded-full bg-muted"
+      className="h-1.5 overflow-hidden rounded-full bg-white/15"
       role="progressbar"
       aria-valuemin={0}
       aria-valuemax={100}

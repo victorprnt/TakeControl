@@ -1,3 +1,4 @@
+import { APP_NAME, APP_TAGLINE } from "@/constants/app";
 import { cn } from "@/lib/utils";
 
 type StreamMarkProps = {
@@ -7,28 +8,27 @@ type StreamMarkProps = {
 
 export function StreamMark({ className, compact = false }: StreamMarkProps) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <span className="flex size-9 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-sm">
-        <svg viewBox="0 0 24 24" className="size-5" aria-hidden>
-          <path
-            d="M4 15.5c2.2-3.6 4.2-3.6 6.5 0s4.3 3.6 6.5 0"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <path
-            d="M4 10c2.2-3.6 4.2-3.6 6.5 0s4.3 3.6 6.5 0"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            opacity="0.65"
-          />
-        </svg>
-      </span>
-      <span className={cn("text-[13px] font-semibold tracking-[0.2em] text-foreground", compact && "sr-only")}>
-        STREAM
+    <span className={cn("inline-flex min-w-0 items-center gap-3", className)}>
+      <svg viewBox="0 0 24 24" className="size-8 shrink-0 text-white drop-shadow-[0_0_12px_rgba(143,214,242,0.75)]" aria-hidden>
+        <path
+          d="M3.5 15.5c2.4-4 4.6-4 7 0s4.6 4 7 0"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+        <path
+          d="M3.5 10c2.4-4 4.6-4 7 0s4.6 4 7 0"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+          opacity="0.55"
+        />
+      </svg>
+      <span className="min-w-0">
+        <span className="block truncate text-base font-semibold tracking-tight text-white">{APP_NAME}</span>
+        <span className={cn("mt-0.5 block truncate text-xs text-white/60", compact && "sr-only")}>{APP_TAGLINE}</span>
       </span>
     </span>
   );

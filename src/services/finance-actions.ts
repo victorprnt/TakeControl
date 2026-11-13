@@ -105,6 +105,21 @@ export async function updateFixedBill(
   return run(() => getServices().bills.update(id, input));
 }
 
+export async function addFixedBill(
+  monthId: string,
+  name: string,
+  amountCents: number,
+): Promise<ActionResult<FixedBill>> {
+  return run(() => getServices().bills.add(monthId, { name, amount: amountCents }));
+}
+
+export async function deleteFixedBill(id: string): Promise<ActionResult<null>> {
+  return run(async () => {
+    await getServices().bills.remove(id);
+    return null;
+  });
+}
+
 export async function saveTransaction(input: TransactionWrite): Promise<ActionResult<Transaction>> {
   return run(() =>
     getServices().transactions.create({

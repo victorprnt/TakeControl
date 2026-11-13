@@ -174,3 +174,21 @@ export function parseFixedBill(value: unknown): FixedBill {
 export function parseFixedBills(value: unknown): FixedBill[] {
   return parseList(value, parseFixedBill);
 }
+
+export function parseBillMonth(value: unknown): { id: string; month: FixedBill["month"] } {
+  const record = readRecord(value);
+  const month = readString(record.month, "month");
+
+  if (!isMonthId(month)) {
+    throw new Error("Invalid month.");
+  }
+
+  return {
+    id: readString(record.id, "id"),
+    month,
+  };
+}
+
+export function parseBillMonths(value: unknown): { id: string; month: FixedBill["month"] }[] {
+  return parseList(value, parseBillMonth);
+}

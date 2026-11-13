@@ -2,6 +2,9 @@
 
 import type { ReactNode } from "react";
 
+import { cn } from "@/lib/utils";
+
+import { canvasClassName } from "@/components/layout/canvas";
 import { AppHeader } from "@/components/layout/app-header";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { FinanceProvider, useFinance } from "@/components/layout/finance-provider";
@@ -18,10 +21,10 @@ export function AppShell({ children }: AppShellProps) {
   return (
     <FinanceProvider>
       <QuickExpenseProvider>
-        <div className="min-h-dvh overflow-x-clip bg-background bg-[radial-gradient(1000px_circle_at_0%_-10%,color-mix(in_srgb,var(--primary)_18%,transparent),transparent_42%),radial-gradient(800px_circle_at_100%_0%,color-mix(in_srgb,var(--info)_16%,transparent),transparent_36%)] text-foreground">
-          <div className="md:grid md:grid-cols-[4.75rem_minmax(0,1fr)] lg:grid-cols-[15.5rem_minmax(0,1fr)]">
+        <div className={cn("min-h-dvh text-foreground", canvasClassName)}>
+          <div className="md:grid md:grid-cols-[auto_minmax(0,1fr)]">
             <AppSidebar />
-            <div className="min-w-0">
+            <div className="min-w-0 overflow-x-clip">
               <AppHeader />
               <FinanceMain>{children}</FinanceMain>
             </div>

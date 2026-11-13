@@ -4,9 +4,7 @@ import { useState } from "react";
 import { Plus } from "lucide-react";
 
 import { CategoryIcon } from "@/components/categories/category-icon";
-import { fieldClassName } from "@/components/budgets/money-field";
 import { ProgressBar } from "@/components/shared/progress-bar";
-import { surfaceClassName } from "@/components/shared/surface";
 import { Button } from "@/components/ui/button";
 import { addEnvelopeSpend } from "@/services/finance-actions";
 import { formatCurrency, parseCurrencyToCents } from "@/lib/formatters";
@@ -49,24 +47,23 @@ export function EnvelopeCard({ envelope, monthId, onSaved }: EnvelopeCardProps) 
   }
 
   return (
-    <article className={cn(surfaceClassName, "flex min-w-0 flex-col gap-4 p-4")}>
-      <div className="flex items-start gap-3">
+    <article className="flex min-w-0 flex-col gap-3 rounded-[1.3rem] bg-white/10 p-3 ring-1 ring-white/10">
+      <div className="flex items-center gap-3">
         <span
-          className="flex size-11 shrink-0 items-center justify-center rounded-2xl text-white"
+          className="flex size-11 shrink-0 items-center justify-center rounded-full text-white shadow-[0_0_18px_rgba(143,214,242,0.25)]"
           style={{ backgroundColor: envelope.color }}
         >
           <CategoryIcon name={envelope.icon} className="size-5" />
         </span>
         <div className="min-w-0 flex-1">
-          <h3 className="truncate text-base font-semibold text-foreground">{envelope.name}</h3>
-          <p className="text-sm text-muted-foreground">Orçamento {formatCurrency(envelope.allocatedCents)}</p>
+          <h3 className="truncate text-sm font-semibold text-white">{envelope.name}</h3>
+          <p className="truncate text-xs text-white/60">Orçamento {formatCurrency(envelope.allocatedCents)}</p>
         </div>
         <Button
           type="button"
-          variant="outline"
           aria-expanded={open}
           aria-label={`Adicionar valor em ${envelope.name}`}
-          className="size-11 rounded-full"
+          className="size-11 rounded-full shadow-[0_12px_22px_-14px_rgba(20,80,70,0.95)]"
           onClick={() => {
             setOpen((current) => !current);
             setError("");
@@ -77,15 +74,15 @@ export function EnvelopeCard({ envelope, monthId, onSaved }: EnvelopeCardProps) 
       </div>
       <dl className="grid grid-cols-2 gap-3">
         <div>
-          <dt className="text-xs text-muted-foreground">Gasto</dt>
-          <dd className="text-sm font-semibold tabular-nums text-foreground">{formatCurrency(envelope.spentCents)}</dd>
+          <dt className="text-xs text-white/55">Gasto</dt>
+          <dd className="text-sm font-semibold tabular-nums text-white">{formatCurrency(envelope.spentCents)}</dd>
         </div>
         <div>
-          <dt className="text-xs text-muted-foreground">Disponível</dt>
+          <dt className="text-xs text-white/55">Disponível</dt>
           <dd
             className={cn(
               "text-sm font-semibold tabular-nums",
-              envelope.availableCents < 0 ? "text-danger-ink" : "text-foreground",
+              envelope.availableCents < 0 ? "text-danger-ink" : "text-white",
             )}
           >
             {formatCurrency(envelope.availableCents)}
@@ -102,7 +99,7 @@ export function EnvelopeCard({ envelope, monthId, onSaved }: EnvelopeCardProps) 
             void add(typeof field === "string" ? field : amount);
           }}
         >
-          <label className="grid gap-1.5 text-sm font-medium text-foreground">
+          <label className="grid gap-1.5 text-sm font-medium text-white">
             Valor
             <input
               value={amount}
@@ -113,11 +110,11 @@ export function EnvelopeCard({ envelope, monthId, onSaved }: EnvelopeCardProps) 
               name="amount"
               aria-label={`Valor para ${envelope.name}`}
               disabled={pending}
-              className={fieldClassName}
+              className="h-11 w-full min-w-0 rounded-full border-0 bg-white/10 px-4 text-base text-white outline-none placeholder:text-white/40 focus-visible:ring-3 focus-visible:ring-ring/50"
             />
           </label>
           {error ? <p className="text-sm text-danger-ink">{error}</p> : null}
-          <Button type="submit" className="h-11 rounded-full" disabled={pending}>
+          <Button type="submit" className="h-11 rounded-full shadow-[0_12px_22px_-14px_rgba(20,80,70,0.95)]" disabled={pending}>
             {pending ? "Adicionando" : "Adicionar"}
           </Button>
         </form>

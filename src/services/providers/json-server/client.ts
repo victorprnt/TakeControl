@@ -5,7 +5,7 @@ import { DataAccessError } from "@/services/errors";
 /**
  * HTTP access for the JSON Server provider.
  * Repository interfaces and the rest of the app do not call these endpoints.
- * db.json is local development data. Do not deploy it as storage on Vercel.
+ * db.json is the local database. On Vercel the same document lives in Upstash Redis.
  */
 export class JsonServerClient {
   constructor(private readonly baseUrl: string) {}

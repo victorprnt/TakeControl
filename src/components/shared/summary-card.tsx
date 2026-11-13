@@ -37,7 +37,7 @@ export function SummaryCard({
       <div className="flex items-center justify-between gap-3">
         <p className="text-sm text-muted-foreground">{label}</p>
         {Icon ? (
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-2xl bg-white/70 text-accent-foreground dark:bg-white/10">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-foreground ring-1 ring-white/25">
             <Icon className="size-4" aria-hidden />
           </span>
         ) : null}

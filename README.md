@@ -13,11 +13,15 @@ npm run typecheck
 npm run build
 ```
 
-`npm run dev` sobe o Next.js e o JSON Server juntos. O JSON Server escuta em `http://127.0.0.1:3001` e lê `db.json`. Esse arquivo é só para desenvolvimento local. Não use o JSON Server como banco na Vercel.
+`npm run dev` sobe o Next.js e o JSON Server juntos. O JSON Server escuta em `http://127.0.0.1:3001` e lê `db.json`.
 
 ## Persistência
 
-`DATA_PROVIDER` escolhe a implementação:
+Na máquina local, o banco é o JSON Server. Na Vercel, o mesmo JSON fica numa chave do Upstash Redis (`take-control:state`). A primeira leitura copia o `db.json` publicado para essa chave. As seguintes leem e gravam só no Redis.
+
+A Vercel preenche `UPSTASH_REDIS_REST_URL` e `UPSTASH_REDIS_REST_TOKEN` quando o Upstash Redis está ligado ao projeto. `KV_REST_API_URL` e `KV_REST_API_TOKEN` também servem.
+
+`DATA_PROVIDER` vale quando essas variáveis não existem:
 
 - `json-server` — desenvolvimento local
 - `supabase` — contrato preparado; o driver ainda não grava dados
