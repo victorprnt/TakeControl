@@ -5,21 +5,21 @@ import { PiggyBank, Receipt, Wallet, WalletCards } from "lucide-react";
 import { CategoryCard } from "@/components/categories/category-card";
 import { ChartCard } from "@/components/charts/chart-card";
 import { ExpenseChart } from "@/components/charts/expense-chart";
-import { useMonth } from "@/components/layout/month-provider";
+import { useFinanceSnapshot } from "@/components/layout/finance-provider";
 import { SummaryCard } from "@/components/shared/summary-card";
 import { surfaceClassName } from "@/components/shared/surface";
 import { TransactionItem } from "@/components/transactions/transaction-item";
-import { formatMonth } from "@/lib/formatters";
 import { cn } from "@/lib/utils";
 
 export function DashboardView() {
-  const { monthId, snapshot } = useMonth();
+  const snapshot = useFinanceSnapshot();
+
+  if (!snapshot) {
+    return null;
+  }
 
   return (
     <div className="grid gap-4">
-      <p className="text-xs text-muted-foreground">
-        Valores ilustrativos de {formatMonth(monthId)}.
-      </p>
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <SummaryCard
           label="Disponível"
@@ -48,13 +48,13 @@ export function DashboardView() {
         />
       </section>
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        {snapshot.categories.slice(0, 4).map((category) => (
+        {snapshot.envelopes.slice(0, 4).map((category) => (
           <CategoryCard key={category.id} category={category} />
         ))}
       </section>
       <section className="grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-        <ChartCard title="Gastos por envelope" description="Distribuição ilustrativa do mês.">
-          <ExpenseChart categories={snapshot.categories} />
+        <ChartCard title="Gastos por envelope" description="Distribuição do mês.">
+          <ExpenseChart categories={snapshot.envelopes} />
         </ChartCard>
         <section className={cn(surfaceClassName, "min-w-0 p-4 sm:p-5")}>
           <h2 className="text-sm font-semibold text-foreground">Movimentações recentes</h2>

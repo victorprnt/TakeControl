@@ -3,11 +3,11 @@
 import { useId } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-import type { DemoHistoryPoint } from "@/constants/demo";
+import type { HistoryPoint } from "@/types/finance-snapshot";
 import { formatCurrency, formatCurrencyCompact } from "@/lib/formatters";
 
 type HistoryChartProps = {
-  points: DemoHistoryPoint[];
+  points: HistoryPoint[];
 };
 
 export function HistoryChart({ points }: HistoryChartProps) {

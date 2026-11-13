@@ -1,0 +1,1125 @@
+{
+  "categories": [
+    {
+      "id": "cat_groceries",
+      "name": "Supermercado",
+      "icon": "basket",
+      "color": "#64CBB1",
+      "description": "Compras de casa e feira",
+      "defaultBudget": 110000,
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cat_pharmacy",
+      "name": "Farmácia",
+      "icon": "pharmacy",
+      "color": "#E78A91",
+      "description": "Medicamentos e cuidados",
+      "defaultBudget": 25000,
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cat_leisure",
+      "name": "Lazer",
+      "icon": "spark",
+      "color": "#65B8E8",
+      "description": "Saídas e descanso",
+      "defaultBudget": 35000,
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cat_personal",
+      "name": "Gastos pessoais",
+      "icon": "user",
+      "color": "#EBD58A",
+      "description": "Cuidados e imprevistos pessoais",
+      "defaultBudget": 30000,
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cat_bills",
+      "name": "Contas fixas",
+      "icon": "home",
+      "color": "#8A99A8",
+      "description": "Moradia e contas da casa",
+      "defaultBudget": 175000,
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cat_transport",
+      "name": "Transporte",
+      "icon": "bus",
+      "color": "#65B8E8",
+      "description": "Deslocamento do mês",
+      "defaultBudget": 40000,
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cat_reserve",
+      "name": "Reserva",
+      "icon": "piggy",
+      "color": "#64CBB1",
+      "description": "Dinheiro que fica guardado",
+      "defaultBudget": 80000,
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cat_subscriptions",
+      "name": "Assinaturas",
+      "icon": "card",
+      "color": "#EBD58A",
+      "description": "Serviços e planos recorrentes",
+      "defaultBudget": 50500,
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    }
+  ],
+  "monthlyBudgets": [
+    {
+      "id": "mb_2026_09",
+      "month": "2026-09",
+      "income": 545500,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "mb_2026_10",
+      "month": "2026-10",
+      "income": 545500,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "mb_2026_11",
+      "month": "2026-11",
+      "income": 545500,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    }
+  ],
+  "categoryBudgets": [
+    {
+      "id": "cb_2026_09_cat_groceries",
+      "monthlyBudgetId": "mb_2026_09",
+      "categoryId": "cat_groceries",
+      "allocatedAmount": 110000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_09_cat_pharmacy",
+      "monthlyBudgetId": "mb_2026_09",
+      "categoryId": "cat_pharmacy",
+      "allocatedAmount": 20000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_09_cat_leisure",
+      "monthlyBudgetId": "mb_2026_09",
+      "categoryId": "cat_leisure",
+      "allocatedAmount": 30000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_09_cat_personal",
+      "monthlyBudgetId": "mb_2026_09",
+      "categoryId": "cat_personal",
+      "allocatedAmount": 28000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_09_cat_bills",
+      "monthlyBudgetId": "mb_2026_09",
+      "categoryId": "cat_bills",
+      "allocatedAmount": 175000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_09_cat_transport",
+      "monthlyBudgetId": "mb_2026_09",
+      "categoryId": "cat_transport",
+      "allocatedAmount": 40000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_09_cat_reserve",
+      "monthlyBudgetId": "mb_2026_09",
+      "categoryId": "cat_reserve",
+      "allocatedAmount": 92500,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_09_cat_subscriptions",
+      "monthlyBudgetId": "mb_2026_09",
+      "categoryId": "cat_subscriptions",
+      "allocatedAmount": 50000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_10_cat_groceries",
+      "monthlyBudgetId": "mb_2026_10",
+      "categoryId": "cat_groceries",
+      "allocatedAmount": 110000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_10_cat_pharmacy",
+      "monthlyBudgetId": "mb_2026_10",
+      "categoryId": "cat_pharmacy",
+      "allocatedAmount": 25000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_10_cat_leisure",
+      "monthlyBudgetId": "mb_2026_10",
+      "categoryId": "cat_leisure",
+      "allocatedAmount": 35000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_10_cat_personal",
+      "monthlyBudgetId": "mb_2026_10",
+      "categoryId": "cat_personal",
+      "allocatedAmount": 30000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_10_cat_bills",
+      "monthlyBudgetId": "mb_2026_10",
+      "categoryId": "cat_bills",
+      "allocatedAmount": 175000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_10_cat_transport",
+      "monthlyBudgetId": "mb_2026_10",
+      "categoryId": "cat_transport",
+      "allocatedAmount": 40000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_10_cat_reserve",
+      "monthlyBudgetId": "mb_2026_10",
+      "categoryId": "cat_reserve",
+      "allocatedAmount": 80000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_10_cat_subscriptions",
+      "monthlyBudgetId": "mb_2026_10",
+      "categoryId": "cat_subscriptions",
+      "allocatedAmount": 50500,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_11_cat_groceries",
+      "monthlyBudgetId": "mb_2026_11",
+      "categoryId": "cat_groceries",
+      "allocatedAmount": 110000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_11_cat_pharmacy",
+      "monthlyBudgetId": "mb_2026_11",
+      "categoryId": "cat_pharmacy",
+      "allocatedAmount": 25000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_11_cat_leisure",
+      "monthlyBudgetId": "mb_2026_11",
+      "categoryId": "cat_leisure",
+      "allocatedAmount": 35000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_11_cat_personal",
+      "monthlyBudgetId": "mb_2026_11",
+      "categoryId": "cat_personal",
+      "allocatedAmount": 30000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_11_cat_bills",
+      "monthlyBudgetId": "mb_2026_11",
+      "categoryId": "cat_bills",
+      "allocatedAmount": 175000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_11_cat_transport",
+      "monthlyBudgetId": "mb_2026_11",
+      "categoryId": "cat_transport",
+      "allocatedAmount": 40000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_11_cat_reserve",
+      "monthlyBudgetId": "mb_2026_11",
+      "categoryId": "cat_reserve",
+      "allocatedAmount": 80000,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "cb_2026_11_cat_subscriptions",
+      "monthlyBudgetId": "mb_2026_11",
+      "categoryId": "cat_subscriptions",
+      "allocatedAmount": 50500,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tx_2026-09_salary",
+      "description": "Salário",
+      "amount": 545500,
+      "type": "income",
+      "categoryId": null,
+      "date": "2026-09-05",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_market_1",
+      "description": "Feira de sábado",
+      "amount": 18640,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-09-06",
+      "notes": "Inclui hortifruti",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_market_2",
+      "description": "Mercado Central",
+      "amount": 22150,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-09-12",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_market_3",
+      "description": "Compras da semana",
+      "amount": 19870,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-09-19",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_market_4",
+      "description": "Padaria",
+      "amount": 13540,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-09-26",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_pharmacy",
+      "description": "Farmácia da esquina",
+      "amount": 9800,
+      "type": "expense",
+      "categoryId": "cat_pharmacy",
+      "date": "2026-09-14",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_cinema",
+      "description": "Cinema",
+      "amount": 5400,
+      "type": "expense",
+      "categoryId": "cat_leisure",
+      "date": "2026-09-14",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_dinner",
+      "description": "Jantar",
+      "amount": 11000,
+      "type": "expense",
+      "categoryId": "cat_leisure",
+      "date": "2026-09-20",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_gym",
+      "description": "Academia",
+      "amount": 9900,
+      "type": "expense",
+      "categoryId": "cat_personal",
+      "date": "2026-09-03",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_care",
+      "description": "Cuidados pessoais",
+      "amount": 8700,
+      "type": "expense",
+      "categoryId": "cat_personal",
+      "date": "2026-09-18",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_rent",
+      "description": "Aluguel",
+      "amount": 145000,
+      "type": "expense",
+      "categoryId": "cat_bills",
+      "date": "2026-09-05",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_internet",
+      "description": "Internet",
+      "amount": 12990,
+      "type": "expense",
+      "categoryId": "cat_bills",
+      "date": "2026-09-08",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_energy",
+      "description": "Energia",
+      "amount": 17010,
+      "type": "expense",
+      "categoryId": "cat_bills",
+      "date": "2026-09-12",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_transport",
+      "description": "Passagens",
+      "amount": 15200,
+      "type": "expense",
+      "categoryId": "cat_transport",
+      "date": "2026-09-01",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_reserve",
+      "description": "Aporte na reserva",
+      "amount": 10000,
+      "type": "expense",
+      "categoryId": "cat_reserve",
+      "date": "2026-09-10",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_phone",
+      "description": "Plano de celular",
+      "amount": 11990,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-09-02",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_stream",
+      "description": "Streaming",
+      "amount": 5590,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-09-04",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_music",
+      "description": "Música",
+      "amount": 2190,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-09-04",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_cloud",
+      "description": "Nuvem",
+      "amount": 1490,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-09-06",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_paper",
+      "description": "Jornal",
+      "amount": 2490,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-09-07",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-09_software",
+      "description": "Software",
+      "amount": 15150,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-09-09",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_salary",
+      "description": "Salário",
+      "amount": 545500,
+      "type": "income",
+      "categoryId": null,
+      "date": "2026-10-05",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_market_1",
+      "description": "Mercado Central",
+      "amount": 31240,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-10-03",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_market_2",
+      "description": "Feira de sábado",
+      "amount": 28460,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-10-10",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_market_3",
+      "description": "Compras da semana",
+      "amount": 24110,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-10-17",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_market_4",
+      "description": "Hortifruti",
+      "amount": 17390,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-10-24",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_pharmacy_1",
+      "description": "Farmácia",
+      "amount": 6200,
+      "type": "expense",
+      "categoryId": "cat_pharmacy",
+      "date": "2026-10-06",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_pharmacy_2",
+      "description": "Medicamentos",
+      "amount": 12200,
+      "type": "expense",
+      "categoryId": "cat_pharmacy",
+      "date": "2026-10-21",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_dinner",
+      "description": "Jantar",
+      "amount": 8900,
+      "type": "expense",
+      "categoryId": "cat_leisure",
+      "date": "2026-10-09",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_show",
+      "description": "Show",
+      "amount": 15400,
+      "type": "expense",
+      "categoryId": "cat_leisure",
+      "date": "2026-10-16",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_coffee",
+      "description": "Café com amigos",
+      "amount": 8900,
+      "type": "expense",
+      "categoryId": "cat_leisure",
+      "date": "2026-10-28",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_gym",
+      "description": "Academia",
+      "amount": 9900,
+      "type": "expense",
+      "categoryId": "cat_personal",
+      "date": "2026-10-03",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_gift",
+      "description": "Presente",
+      "amount": 8600,
+      "type": "expense",
+      "categoryId": "cat_personal",
+      "date": "2026-10-12",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_care",
+      "description": "Cuidados pessoais",
+      "amount": 9000,
+      "type": "expense",
+      "categoryId": "cat_personal",
+      "date": "2026-10-22",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_rent",
+      "description": "Aluguel",
+      "amount": 145000,
+      "type": "expense",
+      "categoryId": "cat_bills",
+      "date": "2026-10-05",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_internet",
+      "description": "Internet",
+      "amount": 12990,
+      "type": "expense",
+      "categoryId": "cat_bills",
+      "date": "2026-10-08",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_energy",
+      "description": "Energia",
+      "amount": 17010,
+      "type": "expense",
+      "categoryId": "cat_bills",
+      "date": "2026-10-12",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_ticket",
+      "description": "Bilhete mensal",
+      "amount": 19800,
+      "type": "expense",
+      "categoryId": "cat_transport",
+      "date": "2026-10-01",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_fuel",
+      "description": "Combustível",
+      "amount": 12800,
+      "type": "expense",
+      "categoryId": "cat_transport",
+      "date": "2026-10-14",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_ride",
+      "description": "Aplicativo de viagem",
+      "amount": 6000,
+      "type": "expense",
+      "categoryId": "cat_transport",
+      "date": "2026-10-27",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_reserve",
+      "description": "Aporte na reserva",
+      "amount": 15000,
+      "type": "expense",
+      "categoryId": "cat_reserve",
+      "date": "2026-10-10",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_phone",
+      "description": "Plano de celular",
+      "amount": 11990,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-10-02",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_stream",
+      "description": "Streaming",
+      "amount": 5590,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-10-04",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_music",
+      "description": "Música",
+      "amount": 2190,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-10-04",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_cloud",
+      "description": "Nuvem",
+      "amount": 1490,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-10-06",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_paper",
+      "description": "Jornal",
+      "amount": 2490,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-10-07",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-10_software",
+      "description": "Software",
+      "amount": 23450,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-10-09",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_salary",
+      "description": "Salário",
+      "amount": 545500,
+      "type": "income",
+      "categoryId": null,
+      "date": "2026-11-05",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_market_1",
+      "description": "Feira de sábado",
+      "amount": 18640,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-11-02",
+      "notes": "Inclui hortifruti",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_market_2",
+      "description": "Mercado Central",
+      "amount": 27480,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-11-08",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_market_3",
+      "description": "Padaria e hortifruti",
+      "amount": 21450,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-11-15",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_market_4",
+      "description": "Compras da semana",
+      "amount": 18850,
+      "type": "expense",
+      "categoryId": "cat_groceries",
+      "date": "2026-11-22",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_pharmacy_1",
+      "description": "Farmácia Droga Mais",
+      "amount": 4290,
+      "type": "expense",
+      "categoryId": "cat_pharmacy",
+      "date": "2026-11-04",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_pharmacy_2",
+      "description": "Medicamentos",
+      "amount": 17890,
+      "type": "expense",
+      "categoryId": "cat_pharmacy",
+      "date": "2026-11-18",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_cinema",
+      "description": "Cinema",
+      "amount": 6400,
+      "type": "expense",
+      "categoryId": "cat_leisure",
+      "date": "2026-11-13",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_coffee",
+      "description": "Café com amigos",
+      "amount": 8400,
+      "type": "expense",
+      "categoryId": "cat_leisure",
+      "date": "2026-11-20",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_gym",
+      "description": "Academia",
+      "amount": 9900,
+      "type": "expense",
+      "categoryId": "cat_personal",
+      "date": "2026-11-03",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_gift",
+      "description": "Presente",
+      "amount": 12500,
+      "type": "expense",
+      "categoryId": "cat_personal",
+      "date": "2026-11-11",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_barber",
+      "description": "Barbearia",
+      "amount": 9700,
+      "type": "expense",
+      "categoryId": "cat_personal",
+      "date": "2026-11-16",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_rent",
+      "description": "Aluguel",
+      "amount": 145000,
+      "type": "expense",
+      "categoryId": "cat_bills",
+      "date": "2026-11-05",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_internet",
+      "description": "Internet",
+      "amount": 12990,
+      "type": "expense",
+      "categoryId": "cat_bills",
+      "date": "2026-11-08",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_energy",
+      "description": "Energia",
+      "amount": 17010,
+      "type": "expense",
+      "categoryId": "cat_bills",
+      "date": "2026-11-12",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_ticket",
+      "description": "Bilhete mensal",
+      "amount": 19800,
+      "type": "expense",
+      "categoryId": "cat_transport",
+      "date": "2026-11-01",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_ride",
+      "description": "Aplicativo de viagem",
+      "amount": 3000,
+      "type": "expense",
+      "categoryId": "cat_transport",
+      "date": "2026-11-19",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_reserve",
+      "description": "Aporte na reserva",
+      "amount": 20000,
+      "type": "expense",
+      "categoryId": "cat_reserve",
+      "date": "2026-11-10",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_phone",
+      "description": "Plano de celular",
+      "amount": 11990,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-11-02",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_stream",
+      "description": "Streaming",
+      "amount": 5590,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-11-04",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_music",
+      "description": "Música",
+      "amount": 2190,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-11-04",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_cloud",
+      "description": "Nuvem",
+      "amount": 1490,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-11-06",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_paper",
+      "description": "Jornal",
+      "amount": 2490,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-11-07",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "tx_2026-11_software",
+      "description": "Software",
+      "amount": 21740,
+      "type": "expense",
+      "categoryId": "cat_subscriptions",
+      "date": "2026-11-09",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    }
+  ],
+  "recurringExpenses": [
+    {
+      "id": "rec_rent",
+      "description": "Aluguel",
+      "amount": 145000,
+      "categoryId": "cat_bills",
+      "frequency": "monthly",
+      "startDate": "2026-01-05",
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "rec_internet",
+      "description": "Internet",
+      "amount": 12990,
+      "categoryId": "cat_bills",
+      "frequency": "monthly",
+      "startDate": "2026-01-08",
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "rec_energy",
+      "description": "Energia",
+      "amount": 17010,
+      "categoryId": "cat_bills",
+      "frequency": "monthly",
+      "startDate": "2026-01-12",
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "rec_gym",
+      "description": "Academia",
+      "amount": 9900,
+      "categoryId": "cat_personal",
+      "frequency": "monthly",
+      "startDate": "2026-02-03",
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "rec_phone",
+      "description": "Plano de celular",
+      "amount": 11990,
+      "categoryId": "cat_subscriptions",
+      "frequency": "monthly",
+      "startDate": "2026-01-02",
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "rec_streaming",
+      "description": "Streaming",
+      "amount": 5590,
+      "categoryId": "cat_subscriptions",
+      "frequency": "monthly",
+      "startDate": "2026-03-04",
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "rec_market",
+      "description": "Feira",
+      "amount": 4500,
+      "categoryId": "cat_groceries",
+      "frequency": "weekly",
+      "startDate": "2026-09-06",
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "rec_insurance",
+      "description": "Seguro do celular",
+      "amount": 24000,
+      "categoryId": "cat_subscriptions",
+      "frequency": "yearly",
+      "startDate": "2026-06-15",
+      "isActive": true,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "rec_magazine",
+      "description": "Revista",
+      "amount": 1990,
+      "categoryId": "cat_leisure",
+      "frequency": "monthly",
+      "startDate": "2025-01-10",
+      "isActive": false,
+      "endDate": "2026-08-01",
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    }
+  ]
+}

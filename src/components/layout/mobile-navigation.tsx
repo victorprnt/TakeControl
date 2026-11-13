@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Plus } from "lucide-react";
 
+import { useFinance } from "@/components/layout/finance-provider";
 import { useQuickExpense } from "@/components/layout/quick-expense";
 import { mobileNavigation } from "@/constants/navigation";
 import { cn } from "@/lib/utils";
@@ -11,6 +12,7 @@ import { cn } from "@/lib/utils";
 export function MobileNavigation() {
   const pathname = usePathname();
   const { openExpense } = useQuickExpense();
+  const { snapshot } = useFinance();
   const leading = mobileNavigation.slice(0, 2);
   const trailing = mobileNavigation.slice(2);
 
@@ -26,8 +28,9 @@ export function MobileNavigation() {
         <div className="flex justify-center">
           <button
             type="button"
-            className="-mt-5 inline-flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_24px_-12px_rgba(20,80,70,0.75)] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/60"
+            className="-mt-5 inline-flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_24px_-12px_rgba(20,80,70,0.75)] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/60 disabled:opacity-40"
             aria-label="Registrar despesa"
+            disabled={!snapshot}
             onClick={openExpense}
           >
             <Plus className="size-6" aria-hidden />

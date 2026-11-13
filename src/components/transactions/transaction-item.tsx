@@ -1,11 +1,11 @@
 import { ArrowDownLeft, ArrowUpRight } from "lucide-react";
 
-import type { DemoTransaction } from "@/constants/demo";
+import type { MovementView } from "@/types/finance-snapshot";
 import { formatCurrency } from "@/lib/formatters";
 import { cn } from "@/lib/utils";
 
 type TransactionItemProps = {
-  transaction: DemoTransaction;
+  transaction: MovementView;
 };
 
 export function TransactionItem({ transaction }: TransactionItemProps) {

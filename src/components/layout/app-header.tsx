@@ -4,6 +4,7 @@ import { Plus } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { AccountMenu } from "@/components/layout/account-menu";
+import { useFinance } from "@/components/layout/finance-provider";
 import { useQuickExpense } from "@/components/layout/quick-expense";
 import { MonthSelector } from "@/components/shared/month-selector";
 import { PageHeader } from "@/components/shared/page-header";
@@ -14,6 +15,7 @@ export function AppHeader() {
   const pathname = usePathname();
   const page = getNavItemByPath(pathname);
   const { openExpense } = useQuickExpense();
+  const { snapshot } = useFinance();
 
   return (
     <header className="sticky top-0 z-30 border-b border-border/60 bg-background/85 px-4 py-3 backdrop-blur-md md:px-6 lg:px-8">
@@ -21,7 +23,7 @@ export function AppHeader() {
         <PageHeader title={page.label} description={page.description} />
         <div className="flex items-center gap-2">
           <MonthSelector />
-          <Button className="hidden h-11 rounded-full px-4 md:inline-flex" onClick={openExpense}>
+          <Button className="hidden h-11 rounded-full px-4 md:inline-flex" onClick={openExpense} disabled={!snapshot}>
             <Plus />
             Nova despesa
           </Button>

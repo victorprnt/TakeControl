@@ -1,5 +1,23 @@
+import type { CategoryBudgetRepository } from "@/services/repositories/category-budget-repository";
+import type { CategoryRepository } from "@/services/repositories/category-repository";
+import type { MonthlyBudgetRepository } from "@/services/repositories/monthly-budget-repository";
+import type { RecurringExpenseRepository } from "@/services/repositories/recurring-expense-repository";
+import type { TransactionRepository } from "@/services/repositories/transaction-repository";
+
 /**
- * Repositories are the only data access API for features.
- * They will delegate to the active provider in a later stage.
+ * The only data-access API used by services.
+ * Implementations live in providers and are selected with DATA_PROVIDER.
  */
-export {};
+export interface Repositories {
+  categories: CategoryRepository;
+  monthlyBudgets: MonthlyBudgetRepository;
+  categoryBudgets: CategoryBudgetRepository;
+  transactions: TransactionRepository;
+  recurringExpenses: RecurringExpenseRepository;
+}
+
+export type { CategoryRepository, NewCategory } from "@/services/repositories/category-repository";
+export type { CategoryBudgetRepository, NewCategoryBudget } from "@/services/repositories/category-budget-repository";
+export type { MonthlyBudgetRepository, NewMonthlyBudget } from "@/services/repositories/monthly-budget-repository";
+export type { RecurringExpenseRepository, NewRecurringExpense } from "@/services/repositories/recurring-expense-repository";
+export type { NewTransaction, TransactionRepository } from "@/services/repositories/transaction-repository";

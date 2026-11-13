@@ -28,6 +28,11 @@ const monthShortFormatter = new Intl.DateTimeFormat(APP_LOCALE, {
   year: "numeric",
 });
 
+const monthTinyFormatter = new Intl.DateTimeFormat(APP_LOCALE, {
+  timeZone: "UTC",
+  month: "short",
+});
+
 /** Example: 13 de nov. de 2026 */
 export function formatDate(date: Date): string {
   return dateFormatter.format(date);
@@ -48,6 +53,23 @@ export function formatMonth(monthId: MonthId): string {
 export function formatMonthShort(monthId: MonthId): string {
   const { year, month } = parseMonthId(monthId);
   return monthShortFormatter.format(new Date(Date.UTC(year, month - 1, 1, 12)));
+}
+
+/** Example: nov */
+export function formatMonthTiny(monthId: MonthId): string {
+  const { year, month } = parseMonthId(monthId);
+  return monthTinyFormatter.format(new Date(Date.UTC(year, month - 1, 1, 12))).replace(".", "");
+}
+
+/** Formats a YYYY-MM-DD calendar date in America/Fortaleza. */
+export function formatDateOnly(value: string): string {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+
+  if (!match?.[1] || !match[2] || !match[3]) {
+    throw new Error(`Invalid calendar date: ${value}.`);
+  }
+
+  return formatDate(new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]), 15)));
 }
 
 /** Converts an instant to YYYY-MM in America/Fortaleza. */

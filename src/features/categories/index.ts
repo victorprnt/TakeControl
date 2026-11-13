@@ -1,2 +1,1 @@
-/** Category rules live in this module, not in interface components. */
-export {};
+export { CategoryService } from "@/services/category-service";

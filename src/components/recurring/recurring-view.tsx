@@ -1,15 +1,16 @@
 "use client";
 
-import { CalendarCheck } from "lucide-react";
-
-import { useMonth } from "@/components/layout/month-provider";
-import { EmptyState } from "@/components/shared/empty-state";
+import { useFinanceSnapshot } from "@/components/layout/finance-provider";
 import { surfaceClassName } from "@/components/shared/surface";
 import { TransactionItem } from "@/components/transactions/transaction-item";
 import { cn } from "@/lib/utils";
 
 export function RecurringView() {
-  const { snapshot } = useMonth();
+  const snapshot = useFinanceSnapshot();
+
+  if (!snapshot) {
+    return null;
+  }
 
   return (
     <div className="grid gap-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]">
@@ -21,11 +22,12 @@ export function RecurringView() {
           ))}
         </div>
       </section>
-      <EmptyState
-        icon={CalendarCheck}
-        title="Nenhum atraso"
-        description="Esta prévia não tem contas vencidas. O acompanhamento real entra com a persistência."
-      />
+      <section className={cn(surfaceClassName, "p-5")}>
+        <h2 className="text-sm font-semibold text-foreground">Ativas</h2>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+          {snapshot.recurring.length} despesas recorrentes ativas. Os lançamentos do mês ficam em Transações.
+        </p>
+      </section>
     </div>
   );
 }

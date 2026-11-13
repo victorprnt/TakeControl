@@ -1,2 +1,1 @@
-/** Transaction rules live in this module, not in interface components. */
-export {};
+export { TransactionService } from "@/services/transaction-service";

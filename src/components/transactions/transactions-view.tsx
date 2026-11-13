@@ -3,19 +3,19 @@
 import { useMemo, useState } from "react";
 import { SearchX } from "lucide-react";
 
-import { useMonth } from "@/components/layout/month-provider";
+import { useFinanceSnapshot } from "@/components/layout/finance-provider";
 import { EmptyState } from "@/components/shared/empty-state";
 import { surfaceClassName } from "@/components/shared/surface";
 import { TransactionItem } from "@/components/transactions/transaction-item";
 import { cn } from "@/lib/utils";
 
 export function TransactionsView() {
-  const { snapshot } = useMonth();
+  const snapshot = useFinanceSnapshot();
   const [query, setQuery] = useState("");
   const normalized = query.trim().toLocaleLowerCase("pt-BR");
   const transactions = useMemo(
     () =>
-      snapshot.transactions.filter((transaction) => {
+      (snapshot?.transactions ?? []).filter((transaction) => {
         if (!normalized) {
           return true;
         }
@@ -24,8 +24,12 @@ export function TransactionsView() {
           transaction.category.toLocaleLowerCase("pt-BR").includes(normalized)
         );
       }),
-    [normalized, snapshot.transactions],
+    [normalized, snapshot],
   );
+
+  if (!snapshot) {
+    return null;
+  }
 
   return (
     <div className="grid gap-4">
@@ -42,7 +46,7 @@ export function TransactionsView() {
         <EmptyState
           icon={SearchX}
           title="Nenhuma movimentação"
-          description="Não há itens ilustrativos com esse termo. Limpe a busca para ver a lista do mês."
+          description="Não há movimentações com esse termo. Limpe a busca para ver a lista do mês."
         />
       ) : (
         <section className={cn(surfaceClassName, "px-4 sm:px-5")}>

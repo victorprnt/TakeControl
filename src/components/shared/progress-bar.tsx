@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { ProgressTone } from "@/constants/demo";
+import type { ProgressTone } from "@/types/finance-snapshot";
 
 const toneClassName: Record<ProgressTone, string> = {
   safe: "bg-primary",

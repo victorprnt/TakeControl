@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, type FormEvent, type ReactNode } from "react";
 
-import { useMonth } from "@/components/layout/month-provider";
+import { useFinance } from "@/components/layout/finance-provider";
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,14 +34,18 @@ export function QuickExpenseProvider({ children }: { children: ReactNode }) {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
-  const [categoryId, setCategoryId] = useState("groceries");
+  const [categoryId, setCategoryId] = useState("");
   const [error, setError] = useState("");
-  const { snapshot } = useMonth();
+  const { snapshot } = useFinance();
+  const categories = snapshot?.envelopes ?? [];
+  const selectedCategoryId = categories.some((category) => category.id === categoryId)
+    ? categoryId
+    : (categories[0]?.id ?? "");
 
   function reset() {
     setDescription("");
     setAmount("");
-    setCategoryId(snapshot.categories[0]?.id ?? "groceries");
+    setCategoryId("");
     setError("");
   }
 
@@ -104,11 +108,11 @@ export function QuickExpenseProvider({ children }: { children: ReactNode }) {
             <label className="grid gap-1.5 text-sm font-medium text-foreground">
               Categoria
               <select
-                value={categoryId}
+                value={selectedCategoryId}
                 onChange={(event) => setCategoryId(event.target.value)}
                 className="h-11 rounded-2xl border border-input bg-card px-3 text-base font-normal outline-none focus-visible:ring-3 focus-visible:ring-ring/40"
               >
-                {snapshot.categories.map((category) => (
+                {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
                   </option>

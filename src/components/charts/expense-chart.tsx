@@ -3,27 +3,35 @@
 import { useId } from "react";
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-import type { DemoCategory } from "@/constants/demo";
+import type { EnvelopeStatus } from "@/types/finance-snapshot";
 import { formatCurrency, formatCurrencyCompact } from "@/lib/formatters";
 
 const fills = ["#64CBB1", "#65B8E8", "#EBD58A", "#E78A91", "#9BB8C9", "#7DCFC0", "#8EC9EF"];
 
+const shortLabels: Record<string, string> = {
+  Supermercado: "Mercado",
+  "Gastos pessoais": "Pessoal",
+  "Contas fixas": "Contas",
+  Transporte: "Transp.",
+  Assinaturas: "Assin.",
+};
+
 type ExpenseChartProps = {
-  categories: DemoCategory[];
+  categories: EnvelopeStatus[];
 };
 
 export function ExpenseChart({ categories }: ExpenseChartProps) {
   const labelId = useId().replace(/:/g, "");
   const data = categories.map((category, index) => ({
-    name: category.shortName,
+    name: shortLabels[category.name] ?? category.name,
     spentCents: category.spentCents,
     fill: fills[index % fills.length],
   }));
 
   return (
-    <div className="h-72 w-full min-w-0" aria-labelledby={labelId}>
+    <div className="h-80 w-full min-w-0" aria-labelledby={labelId}>
       <p id={labelId} className="sr-only">
-        Gastos ilustrativos por categoria
+        Gastos por categoria
       </p>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
@@ -35,7 +43,7 @@ export function ExpenseChart({ categories }: ExpenseChartProps) {
           <YAxis
             type="category"
             dataKey="name"
-            width={68}
+            width={76}
             tickLine={false}
             axisLine={false}
             tick={{ fill: "#8A99A8", fontSize: 11 }}
