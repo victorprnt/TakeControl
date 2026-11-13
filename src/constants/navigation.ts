@@ -22,7 +22,7 @@ export const mainNavigation: NavItem[] = [
     href: "/dashboard",
     label: "Dashboard",
     shortLabel: "Início",
-    description: "Acompanhe o mês em um só lugar.",
+    description: "Resumo, contas fixas e envelopes do mês.",
     icon: LayoutDashboard,
   },
   {
@@ -33,18 +33,31 @@ export const mainNavigation: NavItem[] = [
     icon: Wallet,
   },
   {
-    href: "/transactions",
-    label: "Transações",
-    shortLabel: "Transações",
-    description: "Registre entradas e saídas.",
-    icon: ArrowLeftRight,
-  },
-  {
     href: "/categories",
     label: "Categorias",
     shortLabel: "Categorias",
     description: "Organize os envelopes do orçamento.",
     icon: Shapes,
+  },
+  {
+    href: "/settings",
+    label: "Configurações",
+    shortLabel: "Ajustes",
+    description: "Preferências da conta e do aplicativo.",
+    icon: Settings,
+  },
+];
+
+const mobileHrefs = ["/dashboard", "/budgets", "/categories", "/settings"];
+
+/** Kept so existing routes still resolve a title. They stay out of the menu. */
+const retiredNavigation: NavItem[] = [
+  {
+    href: "/transactions",
+    label: "Transações",
+    shortLabel: "Transações",
+    description: "Registre entradas e saídas.",
+    icon: ArrowLeftRight,
   },
   {
     href: "/recurring",
@@ -60,21 +73,14 @@ export const mainNavigation: NavItem[] = [
     description: "Veja como os gastos evoluem ao longo dos meses.",
     icon: LineChart,
   },
-  {
-    href: "/settings",
-    label: "Configurações",
-    shortLabel: "Configurações",
-    description: "Preferências da conta e do aplicativo.",
-    icon: Settings,
-  },
 ];
 
-const mobileHrefs = ["/dashboard", "/budgets", "/transactions", "/history"];
+const pages = [...mainNavigation, ...retiredNavigation];
 
 export const mobileNavigation = mobileHrefs.map((href) => getNavItem(href));
 
 export function getNavItem(href: string): NavItem {
-  const item = mainNavigation.find((entry) => entry.href === href);
+  const item = pages.find((entry) => entry.href === href);
 
   if (!item) {
     throw new Error(`Unknown navigation href: ${href}`);
@@ -85,8 +91,7 @@ export function getNavItem(href: string): NavItem {
 
 export function getNavItemByPath(pathname: string): NavItem {
   return (
-    mainNavigation.find(
-      (entry) => pathname === entry.href || pathname.startsWith(`${entry.href}/`),
-    ) ?? mainNavigation[0]
+    pages.find((entry) => pathname === entry.href || pathname.startsWith(`${entry.href}/`)) ??
+    mainNavigation[0]
   );
 }

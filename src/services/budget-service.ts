@@ -1,11 +1,12 @@
 import "server-only";
 
 import { budgetThresholds } from "@/constants/budget-thresholds";
-import { RESERVE_CATEGORY_ID } from "@/constants/finance";
+import { BILLS_CATEGORY_ID, RESERVE_CATEGORY_ID } from "@/constants/finance";
 import { formatDateOnly, formatFrequency, formatMonthTiny, getPreviousMonth, monthDateRange } from "@/lib/formatters";
 import { isMonthId } from "@/lib/validations/month-id";
 import type { CategoryService } from "@/services/category-service";
 import { DataAccessError } from "@/services/errors";
+import type { FixedBillService } from "@/services/fixed-bill-service";
 import type { CategoryBudgetRepository } from "@/services/repositories/category-budget-repository";
 import type { MonthlyBudgetRepository } from "@/services/repositories/monthly-budget-repository";
 import type { RecurringExpenseService } from "@/services/recurring-expense-service";
@@ -65,6 +66,7 @@ export class BudgetService {
     private readonly categories: CategoryService,
     private readonly transactions: TransactionService,
     private readonly recurring: RecurringExpenseService,
+    private readonly bills: FixedBillService,
   ) {}
 
   async getSnapshot(monthId?: string): Promise<FinanceSnapshot> {
@@ -102,6 +104,14 @@ export class BudgetService {
     const spentCents = envelopes.reduce((total, envelope) => total + envelope.spentCents, 0);
     const receivedIncomeCents = this.receivedIncome(transactions, selected);
     const reserve = envelopes.find((envelope) => envelope.id === RESERVE_CATEGORY_ID);
+    const bills = await this.bills.listForMonth(selected);
+    const spendingEnvelopes = envelopes.filter((envelope) => envelope.id !== BILLS_CATEGORY_ID);
+    const envelopeBudgetCents = spendingEnvelopes.reduce((total, envelope) => total + envelope.allocatedCents, 0);
+    const envelopeSpentCents = spendingEnvelopes.reduce((total, envelope) => total + envelope.spentCents, 0);
+    const billBudgetCents = bills.reduce((total, bill) => total + bill.amount, 0);
+    const billSpentCents = bills.filter((bill) => bill.paid).reduce((total, bill) => total + bill.amount, 0);
+    const budgetCents = envelopeBudgetCents + billBudgetCents;
+    const overviewSpentCents = envelopeSpentCents + billSpentCents;
     const previousMonthId = getPreviousMonth(selected);
     const previousBudget = budgets.find((item) => item.month === previousMonthId);
     const previousEnvelopes = previousBudget
@@ -124,6 +134,13 @@ export class BudgetService {
         availableCents: allocatedCents - spentCents,
         reservedCents: reserve?.availableCents ?? 0,
       },
+      overview: {
+        budgetCents,
+        spentCents: overviewSpentCents,
+        balanceCents: budgetCents - overviewSpentCents,
+        savedCents: reserve?.availableCents ?? 0,
+      },
+      bills,
       distribution: this.distribution(budget.income, allocatedCents),
       envelopes,
       transactions: this.movements(transactions, categoryById, selected),

@@ -1,5 +1,6 @@
 import "server-only";
 
+import { monthDateRange, toDateOnly } from "@/lib/formatters";
 import { isDateOnly } from "@/lib/validations/records";
 import { isMonthId } from "@/lib/validations/month-id";
 import { DataAccessError } from "@/services/errors";
@@ -46,6 +47,37 @@ export class TransactionService {
   async create(input: NewTransaction): Promise<Transaction> {
     const next = await this.parse(input, { requireActiveCategory: true });
     return this.transactions.create(next);
+  }
+
+  /**
+   * Adds one amount to an envelope. The row is stored with the movements
+   * and is not listed on the dashboard.
+   */
+  async addToEnvelope(categoryId: string, monthId: string, amount: number): Promise<Transaction> {
+    if (!isMonthId(monthId)) {
+      throw new DataAccessError("O mês precisa estar no formato AAAA-MM.", "invalid");
+    }
+
+    const category = await this.categories.findById(categoryId);
+
+    if (!category) {
+      throw new DataAccessError("Categoria não encontrada.", "not_found", 404);
+    }
+
+    if (!category.isActive) {
+      throw new DataAccessError("A categoria não está ativa.", "conflict");
+    }
+
+    const today = toDateOnly();
+    const range = monthDateRange(monthId);
+
+    return this.create({
+      description: category.name,
+      amount,
+      type: "expense",
+      categoryId,
+      date: today >= range.start && today <= range.end ? today : range.start,
+    });
   }
 
   /**

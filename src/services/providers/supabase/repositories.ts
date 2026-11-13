@@ -23,5 +23,6 @@ export function createSupabaseRepositories(): Repositories {
     categoryBudgets: unavailableRepository(),
     transactions: unavailableRepository(),
     recurringExpenses: unavailableRepository(),
+    fixedBills: unavailableRepository(),
   };
 }

@@ -10,6 +10,7 @@ import type { MonthAllocationInput, MonthPlan } from "@/types/month-plan";
 import type { MonthId } from "@/types/month";
 import type { OccurrenceGeneration, RecurringOccurrence } from "@/types/recurring-occurrence";
 import type { RecurringExpense } from "@/types/recurring-expense";
+import type { FixedBill } from "@/types/fixed-bill";
 import type { Transaction, TransactionType } from "@/types/transaction";
 
 export type TransactionWrite = {
@@ -87,6 +88,21 @@ export async function applyReceivedIncome(monthId: string): Promise<ActionResult
 
 export async function loadTransactions(): Promise<ActionResult<Transaction[]>> {
   return run(() => getServices().transactions.list());
+}
+
+export async function addEnvelopeSpend(
+  categoryId: string,
+  monthId: string,
+  amountCents: number,
+): Promise<ActionResult<Transaction>> {
+  return run(() => getServices().transactions.addToEnvelope(categoryId, monthId, amountCents));
+}
+
+export async function updateFixedBill(
+  id: string,
+  input: { amount?: number; paid?: boolean },
+): Promise<ActionResult<FixedBill>> {
+  return run(() => getServices().bills.update(id, input));
 }
 
 export async function saveTransaction(input: TransactionWrite): Promise<ActionResult<Transaction>> {

@@ -6,6 +6,7 @@ import type { Repositories } from "@/services/repositories";
 import type { NewCategory } from "@/services/repositories/category-repository";
 import type { NewCategoryBudget } from "@/services/repositories/category-budget-repository";
 import type { NewMonthlyBudget } from "@/services/repositories/monthly-budget-repository";
+import type { FixedBillPatch, NewFixedBill } from "@/services/repositories/fixed-bill-repository";
 import type { NewRecurringExpense, RecurringExpensePatch } from "@/services/repositories/recurring-expense-repository";
 import type { NewTransaction, TransactionPatch } from "@/services/repositories/transaction-repository";
 import { JsonServerClient } from "@/services/providers/json-server/client";
@@ -16,6 +17,8 @@ import {
   parseCategoryBudgets,
   parseMonthlyBudget,
   parseMonthlyBudgets,
+  parseFixedBill,
+  parseFixedBills,
   parseRecurringExpense,
   parseRecurringExpenses,
   parseTransaction,
@@ -192,6 +195,23 @@ export function createJsonServerRepositories(client: JsonServerClient): Reposito
         }
 
         return client.patch(`/recurringExpenses/${encodeURIComponent(id)}`, withUpdate(input), parseRecurringExpense);
+      },
+    },
+    fixedBills: {
+      list() {
+        return client.get("/fixedBills", parseFixedBills);
+      },
+      create(input: NewFixedBill) {
+        return client.post("/fixedBills", stamp(input), parseFixedBill);
+      },
+      async update(id, input: FixedBillPatch) {
+        const current = await client.getOrNull(`/fixedBills/${encodeURIComponent(id)}`, parseFixedBill);
+
+        if (!current) {
+          throw new DataAccessError("Registro não encontrado.", "not_found", 404);
+        }
+
+        return client.patch(`/fixedBills/${encodeURIComponent(id)}`, withUpdate(input), parseFixedBill);
       },
     },
   };

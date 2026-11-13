@@ -1,3 +1,4 @@
+import type { FixedBill } from "@/types/fixed-bill";
 import type { Cents } from "@/types/money";
 import type { MonthId } from "@/types/month";
 
@@ -75,6 +76,14 @@ export type FinanceSummary = {
   reservedCents: Cents;
 };
 
+/** Dashboard totals. Bills replace the lumped household envelope. */
+export type MonthOverview = {
+  budgetCents: Cents;
+  spentCents: Cents;
+  balanceCents: Cents;
+  savedCents: Cents;
+};
+
 /** How the month's income was split across envelopes. */
 export type IncomeDistribution = {
   incomeCents: Cents;
@@ -93,6 +102,8 @@ export type FinanceSnapshot = {
   /** Sum of income transactions in the month. Each transaction is counted once. */
   receivedIncomeCents: Cents;
   summary: FinanceSummary;
+  overview: MonthOverview;
+  bills: FixedBill[];
   distribution: IncomeDistribution;
   envelopes: EnvelopeStatus[];
   transactions: MovementView[];

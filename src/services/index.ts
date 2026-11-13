@@ -2,6 +2,7 @@ import "server-only";
 
 import { BudgetService } from "@/services/budget-service";
 import { CategoryService } from "@/services/category-service";
+import { FixedBillService } from "@/services/fixed-bill-service";
 import { createRepositories } from "@/services/providers";
 import { RecurringExpenseService } from "@/services/recurring-expense-service";
 import type { Repositories } from "@/services/repositories";
@@ -12,6 +13,7 @@ export type Services = {
   budgets: BudgetService;
   transactions: TransactionService;
   recurring: RecurringExpenseService;
+  bills: FixedBillService;
 };
 
 export function createServices(repositories: Repositories = createRepositories()): Services {
@@ -22,17 +24,20 @@ export function createServices(repositories: Repositories = createRepositories()
     repositories.categories,
     transactions,
   );
+  const bills = new FixedBillService(repositories.fixedBills);
 
   return {
     categories,
     transactions,
     recurring,
+    bills,
     budgets: new BudgetService(
       repositories.monthlyBudgets,
       repositories.categoryBudgets,
       categories,
       transactions,
       recurring,
+      bills,
     ),
   };
 }

@@ -1118,5 +1118,172 @@
       "createdAt": "2026-01-01T15:00:00.000Z",
       "updatedAt": "2026-01-01T15:00:00.000Z"
     }
+  ],
+  "fixedBills": [
+    {
+      "id": "bill_2026-09_rent",
+      "name": "Aluguel",
+      "icon": "home",
+      "amount": 145000,
+      "paid": true,
+      "month": "2026-09",
+      "sortOrder": 0,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-09_power",
+      "name": "Luz",
+      "icon": "zap",
+      "amount": 17010,
+      "paid": true,
+      "month": "2026-09",
+      "sortOrder": 1,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-09_water",
+      "name": "Água",
+      "icon": "droplet",
+      "amount": 8200,
+      "paid": false,
+      "month": "2026-09",
+      "sortOrder": 2,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-09_gas",
+      "name": "Gás",
+      "icon": "flame",
+      "amount": 5400,
+      "paid": false,
+      "month": "2026-09",
+      "sortOrder": 3,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-09_internet",
+      "name": "Internet",
+      "icon": "wifi",
+      "amount": 12990,
+      "paid": true,
+      "month": "2026-09",
+      "sortOrder": 4,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-10_rent",
+      "name": "Aluguel",
+      "icon": "home",
+      "amount": 145000,
+      "paid": true,
+      "month": "2026-10",
+      "sortOrder": 0,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-10_power",
+      "name": "Luz",
+      "icon": "zap",
+      "amount": 17010,
+      "paid": true,
+      "month": "2026-10",
+      "sortOrder": 1,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-10_water",
+      "name": "Água",
+      "icon": "droplet",
+      "amount": 8200,
+      "paid": false,
+      "month": "2026-10",
+      "sortOrder": 2,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-10_gas",
+      "name": "Gás",
+      "icon": "flame",
+      "amount": 5400,
+      "paid": false,
+      "month": "2026-10",
+      "sortOrder": 3,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-10_internet",
+      "name": "Internet",
+      "icon": "wifi",
+      "amount": 12990,
+      "paid": true,
+      "month": "2026-10",
+      "sortOrder": 4,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-11_rent",
+      "name": "Aluguel",
+      "icon": "home",
+      "amount": 145000,
+      "paid": true,
+      "month": "2026-11",
+      "sortOrder": 0,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-11_power",
+      "name": "Luz",
+      "icon": "zap",
+      "amount": 17010,
+      "paid": true,
+      "month": "2026-11",
+      "sortOrder": 1,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    },
+    {
+      "id": "bill_2026-11_water",
+      "name": "Água",
+      "icon": "droplet",
+      "amount": 8200,
+      "paid": false,
+      "month": "2026-11",
+      "sortOrder": 2,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-11-13T19:11:35.643Z"
+    },
+    {
+      "id": "bill_2026-11_gas",
+      "name": "Gás",
+      "icon": "flame",
+      "amount": 5400,
+      "paid": false,
+      "month": "2026-11",
+      "sortOrder": 3,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-11-13T19:13:47.679Z"
+    },
+    {
+      "id": "bill_2026-11_internet",
+      "name": "Internet",
+      "icon": "wifi",
+      "amount": 12990,
+      "paid": true,
+      "month": "2026-11",
+      "sortOrder": 4,
+      "createdAt": "2026-01-01T15:00:00.000Z",
+      "updatedAt": "2026-01-01T15:00:00.000Z"
+    }
   ]
 }

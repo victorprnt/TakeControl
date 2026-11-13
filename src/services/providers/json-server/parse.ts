@@ -13,6 +13,7 @@ import {
 } from "@/lib/validations/records";
 import type { CategoryBudget } from "@/types/category-budget";
 import type { Category } from "@/types/category";
+import type { FixedBill } from "@/types/fixed-bill";
 import type { MonthlyBudget } from "@/types/monthly-budget";
 import type { RecurringExpense, RecurringFrequency } from "@/types/recurring-expense";
 import type { Transaction, TransactionType } from "@/types/transaction";
@@ -147,4 +148,29 @@ export function parseRecurringExpense(value: unknown): RecurringExpense {
 
 export function parseRecurringExpenses(value: unknown): RecurringExpense[] {
   return parseList(value, parseRecurringExpense);
+}
+
+export function parseFixedBill(value: unknown): FixedBill {
+  const record = readRecord(value);
+  const month = readString(record.month, "month");
+
+  if (!isMonthId(month)) {
+    throw new Error("Invalid month.");
+  }
+
+  return {
+    id: readString(record.id, "id"),
+    name: readString(record.name, "name"),
+    icon: readString(record.icon, "icon"),
+    amount: readCents(record.amount, "amount"),
+    paid: readBoolean(record.paid, "paid"),
+    month,
+    sortOrder: readCents(record.sortOrder, "sortOrder"),
+    createdAt: readTimestamp(record.createdAt, "createdAt"),
+    updatedAt: readTimestamp(record.updatedAt, "updatedAt"),
+  };
+}
+
+export function parseFixedBills(value: unknown): FixedBill[] {
+  return parseList(value, parseFixedBill);
 }

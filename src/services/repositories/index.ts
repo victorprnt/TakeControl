@@ -1,5 +1,6 @@
 import type { CategoryBudgetRepository } from "@/services/repositories/category-budget-repository";
 import type { CategoryRepository } from "@/services/repositories/category-repository";
+import type { FixedBillRepository } from "@/services/repositories/fixed-bill-repository";
 import type { MonthlyBudgetRepository } from "@/services/repositories/monthly-budget-repository";
 import type { RecurringExpenseRepository } from "@/services/repositories/recurring-expense-repository";
 import type { TransactionRepository } from "@/services/repositories/transaction-repository";
@@ -14,6 +15,7 @@ export interface Repositories {
   categoryBudgets: CategoryBudgetRepository;
   transactions: TransactionRepository;
   recurringExpenses: RecurringExpenseRepository;
+  fixedBills: FixedBillRepository;
 }
 
 export type { CategoryRepository, NewCategory } from "@/services/repositories/category-repository";
